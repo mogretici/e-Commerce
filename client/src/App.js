@@ -1,4 +1,3 @@
-import './App.css';
 import { Routes, Route } from "react-router-dom";
 import Navi from './components/Navi';
 import Signin from './pages/Auth/Signin';
