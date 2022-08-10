@@ -33,7 +33,7 @@ function Navi() {
                 <>
                   <LinkContainer to="/signin">
                     <CButton color="dark"> Login </CButton>
-                  </LinkContainer>
+                  </LinkContainer> 
                   <LinkContainer to="/signup">
                     <CButton color="dark"> Register </CButton>
                   </LinkContainer>

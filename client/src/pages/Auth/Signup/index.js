@@ -7,6 +7,7 @@ import { useAuth } from '../../../components/Context/AuthContext'
 function Signup() {
   const [showError, setShowError] = React.useState(false);
   const { Login } = useAuth();
+
   const onFinish = async (values) => {
     try {
       const registerResponse = await fetchRegister({email: values.email, password: values.password})
@@ -14,6 +15,7 @@ function Signup() {
       setShowError(false);
       console.log(registerResponse)
       Login(registerResponse)
+      
     } catch (error) {
       setShowError(true);
       console.log("Failed:", error);
