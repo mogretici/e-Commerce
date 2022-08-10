@@ -9,10 +9,12 @@ import {
   MDBCardBody,
 } from 'mdb-react-ui-kit';
 
-
 function App() {
+
   return (
     <>
+
+
     <Navi />
 
       <MDBCard>
@@ -25,6 +27,7 @@ function App() {
       </MDBCardBody>
     </MDBCard>
       <Footer />
+
     </>
   );
 }

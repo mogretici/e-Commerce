@@ -3,7 +3,7 @@ import redis from './clients/redis';
 
 const cache = expressRedisCache({
   client: redis,
-  expire: 60,
+  expire: 600,
 });
 
 export default cache;

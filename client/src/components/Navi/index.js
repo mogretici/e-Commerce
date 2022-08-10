@@ -1,16 +1,17 @@
 import React from "react";
-// import { Link } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { LinkContainer } from "react-router-bootstrap";
+import { useAuth } from "../Context/AuthContext";
+import { CButton } from "@coreui/react";
 
 function Navi() {
+  const { loggedIn } = useAuth();
   return (
     <div>
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Container>
-          {/* <LinkContainer  to="/"> </LinkContainer> //Link with router */}
           <LinkContainer to="/">
             <Navbar.Brand>eCommerce</Navbar.Brand>
           </LinkContainer>
@@ -18,12 +19,26 @@ function Navi() {
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
               <LinkContainer to="/">
-                <Nav.Link>Products</Nav.Link>
+                <CButton color="dark"> Products </CButton>
               </LinkContainer>
             </Nav>
             <Nav>
-            <LinkContainer to="/signin"><Nav.Link>Login</Nav.Link></LinkContainer>
-            <LinkContainer to="/signup"><Nav.Link >Register</Nav.Link></LinkContainer>
+              {loggedIn ? (
+                <>
+                  <LinkContainer to="/profile">
+                    <CButton color="dark">Profile</CButton>
+                  </LinkContainer>
+                </>
+              ) : (
+                <>
+                  <LinkContainer to="/signin">
+                    <CButton color="dark"> Login </CButton>
+                  </LinkContainer>
+                  <LinkContainer to="/signup">
+                    <CButton color="dark"> Register </CButton>
+                  </LinkContainer>
+                </>
+              )}
             </Nav>
           </Navbar.Collapse>
         </Container>
