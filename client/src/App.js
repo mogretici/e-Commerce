@@ -9,7 +9,8 @@ import {
   MDBCard,
   MDBCardBody,
 } from 'mdb-react-ui-kit';
-import { useAuth } from './components/Context/AuthContext';
+import { useAuth } from './context/AuthContext';
+import './App.css'
 
 function App() {
   const { loggedIn } = useAuth();

@@ -1,22 +1,31 @@
 import React from "react";
 import { Button, Form, Input, Checkbox, Alert } from "antd";
 import "antd/dist/antd.min.css";
-import { useAuth } from '../../../components/Context/AuthContext'
+import { useAuth } from '../../../context/AuthContext'
 import { fetchLogin} from '../../../Api'
+import { EncryptStorage } from 'encrypt-storage';
 
 function Signin() {
   const [showError, setShowError] = React.useState(false);
   const { Login } = useAuth();
+  const encryptStorage = new EncryptStorage('secret-key', {
+    prefix: '@eCommerceSignin',
+  });
+
+  const emailValue = encryptStorage.getItem('email');
+  const passwordValue = encryptStorage.getItem('password').toString();
   const onFinish = async (values) => {
     try {
-      const loginResponse = await fetchLogin({email: values.email, password: values.password})
+      const loginResponse = await fetchLogin({email: values.email, password: values.password});
 
-      if (values.remember && values.email !== "") {
-        localStorage.username = values.email;
-        localStorage.checkbox = values.remember;
+      if (values.remember) {
+        encryptStorage.setItem('email', values.email);
+        encryptStorage.setItem('password', values.password);
+        encryptStorage.setItem('remember', values.remember);
       } else {
-        localStorage.username = "";
-        localStorage.checkbox = "";
+        encryptStorage.removeItem('email');
+        encryptStorage.removeItem('password');
+        encryptStorage.removeItem('remember');
       }
       console.log("Success:", values);
       setShowError(false);
@@ -63,7 +72,7 @@ function Signin() {
         <Form.Item
           label="Email"
           name="email"
-          initialValue={localStorage.username===undefined? "": localStorage.username}
+          initialValue={emailValue}
           rules={[
             {
               type: "email",
@@ -78,6 +87,7 @@ function Signin() {
         <Form.Item
           name="password"
           label="Password"
+          initialValue={passwordValue}
           rules={[
             {
               required: true,

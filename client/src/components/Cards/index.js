@@ -17,10 +17,11 @@ import {
 } from "mdb-react-ui-kit";
 import Description from "./description";
 import currencyFormat from "../currencyFormat";
+import { useCart } from "../../context/CartContext";
 
 function Cards({ item }) {
   const [optModal, setOptModal] = useState(false);
-
+  const {addToCart} = useCart();
   const toggleShow = () => setOptModal(!optModal);
   return (
     <div>
@@ -78,6 +79,9 @@ function Cards({ item }) {
             variant="outlined"
             startIcon={<AddShoppingCartIcon />}
             color="success"
+            onClick={()=>{
+              addToCart(item);
+            }}
           >
             ADD TO CART
           </Button>

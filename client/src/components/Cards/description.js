@@ -12,9 +12,11 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import {CardActions} from "@mui/material";
 import currencyFormat from "../currencyFormat";
+import { useCart } from "../../context/CartContext";
 
 function Description({ item, photos }) {
   const handleDragStart = (e) => e.preventDefault();
+  const {addToCart} = useCart();
   return (
     <div>
     <div style={{ display: "flex", justifyContent: "normal" }}>
@@ -72,6 +74,9 @@ function Description({ item, photos }) {
             variant="outlined"
             startIcon={<AddShoppingCartIcon />}
             color="success"
+            onClick={()=>{
+              addToCart(item)
+            }}
           >
             ADD TO CART
           </Button>

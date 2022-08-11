@@ -1,23 +1,36 @@
 import {useContext, useState, useEffect, createContext} from 'react';
-import { fetchMe, fetchLogout } from '../../Api';
-import {Flex, Spinner} from '@chakra-ui/react'
+import { fetchMe, fetchLogout } from '../Api';
+import {Flex, Spinner} from '@chakra-ui/react';
+import { EncryptStorage } from 'encrypt-storage';
+import { useCart } from "./CartContext";
+
+
+
 
 const AuthContext = createContext();
 
 const AuthProvider = ({children}) => {
+    const { setCart } = useCart();
     const [user, setUser] = useState(null);
     const [loggedIn, setLoggedIn] = useState(false);
     const [loading, setLoading] = useState(true);
+    
 
+    const encryptStorage = new EncryptStorage('secret-key', {
+        prefix: '@eCommerceCart:',
+      });
     useEffect(() => {
+        
         (async () => {
            try {
-             const me = await fetchMe();
+            
+            const me = await fetchMe();
              setLoggedIn(true);
              setUser(me);
              setLoading(false);
              console.log(me)
            } catch (error) {
+            
             setLoading(false);
             
            }
@@ -28,7 +41,7 @@ const AuthProvider = ({children}) => {
         setLoggedIn(true);
         setUser(data.user);
         localStorage.setItem('access-token', data.accessToken);
-        localStorage.setItem('refresh-token', data.refreshToken);
+        localStorage.setItem('refresh-token', data.refreshToken);  
     }
 
     const Logout = async () => {
@@ -37,6 +50,9 @@ const AuthProvider = ({children}) => {
         await fetchLogout();
         localStorage.removeItem('access-token');
         localStorage.removeItem('refresh-token');
+        encryptStorage.removeItem('item');
+        setCart([]);
+        
     }
     const values = { user, loggedIn, Login, Logout };
 

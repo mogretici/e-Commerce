@@ -41,6 +41,7 @@ function SlideShow({ product }) {
             onDragStart={handleDragStart}
             image={product.photos[0]}
             alt={product.title}
+            
           />
           <CardContent>
             <Typography gutterBottom variant="h10" component="div">

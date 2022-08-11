@@ -2,7 +2,7 @@ import React from "react";
 import { Button, Form, Input, Alert } from "antd";
 import "antd/dist/antd.min.css";
 import { fetchRegister} from '../../../Api'
-import { useAuth } from '../../../components/Context/AuthContext'
+import { useAuth } from '../../../context/AuthContext'
 
 function Signup() {
   const [showError, setShowError] = React.useState(false);

@@ -10,10 +10,19 @@ import { Button } from "@mui/material";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import {CardActions} from "@mui/material";
 import currencyFormat from "../currencyFormat";
+import { useCart } from "../../context/CartContext";
+import { useAuth } from "../../context/AuthContext";
+import { Navigate } from "react-router-dom";
+
+
+
 
 
 function Description({ item, photos }) {
   const handleDragStart = (e) => e.preventDefault();
+  const {addToCart} = useCart();
+  const { loggedIn } = useAuth();
+
   return (
     <div style={{ display: "flex", justifyContent: "normal" }}>
       <Card style={{ width: "100rem" }}>
@@ -43,6 +52,13 @@ function Description({ item, photos }) {
             variant="outlined"
             startIcon={<AddShoppingCartIcon />}
             color="success"
+            onClick={()=>{
+              loggedIn 
+              ? 
+              addToCart(item)
+              :
+              <Navigate to="/" /> 
+            }}
           >
             ADD TO CART
           </Button>

@@ -1,5 +1,4 @@
 import axios from "axios";
-
 axios.interceptors.request.use(function (config) {
     const {origin} = new URL(config.url);
     const allowedOrigin = [process.env.REACT_APP_BASE_ENDPOINT];
@@ -23,8 +22,10 @@ export const fetchRegister = async (input) => {
     }
 
 export const fetchMe = async () => {
+    
     const { data } = await axios.get(`${process.env.REACT_APP_BASE_ENDPOINT}/auth/me`);
     return data;
+    
 }
 
 export const fetchLogout = async () => {
