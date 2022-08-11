@@ -31,19 +31,3 @@ root.render(
 
 );
 reportWebVitals();
-
-// Unused dependencies
-// @material-ui/core
-// @testing-library/user-event
-// auto-bind
-// crypto
-// crypto-js
-// node-polyfill-webpack-plugin
-// react-material-ui-carousel
-// react-paginate
-// react-query
-// react-query-devtools
-// semantic-ui-css
-// semantic-ui-react
-// styled-components
-// @mui/styled-engine-sc

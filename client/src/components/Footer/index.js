@@ -47,120 +47,120 @@ export default function App() {
         </section>
         <section className="mb-4">
           <p>
-            Türkiye'nin Bilgisayarcısı eCommerce olarak Toplama Bilgisayar,
-            Gaming Notebooklar ve Gaming Ürünlerin perakende satışını
-            gerçekleştirmek amacıyla yenilikçi mağazacılık anlayışı ve gelişmiş
-            web sitesi özellikleriyle kullanıcılarımıza teknolojik çözümler
-            sunan bir marka olarak yola çıktık.
+            As Turkey's Computer Developer eCommerce, we set out as a brand that
+            offers technological solutions to our users with its innovative
+            merchandising approach and advanced website features in order to
+            realize the retail sale of Gathering Computers, Gaming Notebooks and
+            Gaming Products.
           </p>
         </section>
 
         <section className="">
           <MDBRow>
             <MDBCol lg="3" md="6" className="mb-4 mb-md-0">
-              <h5 className="text-uppercase">eCommerce</h5>
+              <h5 className="text-uppercase" style={{color:"white"}}>eCommerce</h5>
 
               <ul className="list-unstyled mb-0">
                 <li>
                   <a href="#!" className="text-white">
-                    Hakkımızda
+                    About Us
                   </a>
                 </li>
                 <li>
                   <a href="#!" className="text-white">
-                    Kariyer
+                  Career
                   </a>
                 </li>
                 <li>
                   <a href="#!" className="text-white">
-                    Mağazalarımız
+                  Our Stores
                   </a>
                 </li>
                 <li>
                   <a href="#!" className="text-white">
-                    İletişim
+                  Communication
                   </a>
                 </li>
               </ul>
             </MDBCol>
 
             <MDBCol lg="3" md="6" className="mb-4 mb-md-0">
-              <h5 className="text-uppercase">Müşteri Hizmetleri</h5>
+              <h5 className="text-uppercase" style={{color:"white"}}>Customer Service</h5>
 
               <ul className="list-unstyled mb-0">
                 <li>
                   <a href="#!" className="text-white">
-                    İptal ve İade Koşulları
+                  Cancellation and Refund Policy
                   </a>
                 </li>
                 <li>
                   <a href="#!" className="text-white">
-                    Garanti Koşulları
+                  Warranty Conditions
                   </a>
                 </li>
                 <li>
                   <a href="#!" className="text-white">
-                    Sıkça Sorulan Sorular
+                  Frequently Asked Questions
                   </a>
                 </li>
                 <li>
                   <a href="#!" className="text-white">
-                    KVKK Aydınlatma Metni
+                  KVKK Illumination Text
                   </a>
                 </li>
               </ul>
             </MDBCol>
 
             <MDBCol lg="3" md="6" className="mb-4 mb-md-0">
-              <h5 className="text-uppercase">İşlem Rehberi</h5>
+              <h5 className="text-uppercase" style={{color:"white"}}>Trading Guide</h5>
 
               <ul className="list-unstyled mb-0">
                 <li>
                   <a href="#!" className="text-white">
-                    Nasıl Sipariş Verebilirim?
+                  How Can I Order?
                   </a>
                 </li>
                 <li>
                   <a href="#!" className="text-white">
-                    Sipariş Takibi
+                  Order Tracking
                   </a>
                 </li>
                 <li>
                   <a href="#!" className="text-white">
-                    Ödeme Seçenekleri
+                  Payment Options
                   </a>
                 </li>
                 <li>
                   <a href="#!" className="text-white">
-                    Ödeme ve Güvenlik
+                  Payment and Security
                   </a>
                 </li>
               </ul>
             </MDBCol>
             <MDBCol lg="3" md="6" className="mb-4 mb-md-0">
-                <h5 className="text-uppercase">Bizi Takip Edin</h5>
-                <ul className="list-unstyled mb-0">
-                    <li>
-                        <a href="#!" className="text-white">
-                            <MDBIcon fab icon="facebook-f" /> Facebook
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#!" className="text-white">
-                            <MDBIcon fab icon="twitter" /> Twitter
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#!" className="text-white">
-                            <MDBIcon fab icon="instagram" /> Instagram
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#!" className="text-white">
-                            <MDBIcon fab icon="youtube" /> Youtube
-                        </a>
-                    </li>
-                </ul>
+              <h5 className="text-uppercase" style={{color:"white"}}>Follow Us</h5>
+              <ul className="list-unstyled mb-0">
+                <li>
+                  <a href="#!" className="text-white">
+                    <MDBIcon fab icon="facebook-f" /> Facebook
+                  </a>
+                </li>
+                <li>
+                  <a href="#!" className="text-white">
+                    <MDBIcon fab icon="twitter" /> Twitter
+                  </a>
+                </li>
+                <li>
+                  <a href="#!" className="text-white">
+                    <MDBIcon fab icon="instagram" /> Instagram
+                  </a>
+                </li>
+                <li>
+                  <a href="#!" className="text-white">
+                    <MDBIcon fab icon="youtube" /> Youtube
+                  </a>
+                </li>
+              </ul>
             </MDBCol>
           </MDBRow>
         </section>
