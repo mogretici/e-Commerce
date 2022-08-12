@@ -6,6 +6,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import "rsuite/dist/rsuite.min.css";
 import {
   QueryClient,
   QueryClientProvider,
@@ -18,16 +19,17 @@ import { CartProvider } from './context/CartContext';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const queryClient = new QueryClient()
 root.render(
- 
+
     <QueryClientProvider client={queryClient}>
     <BrowserRouter>
     <CartProvider>
       <AuthProvider>
-      <App />
+      <App /> 
       </AuthProvider>
       </CartProvider>
     </BrowserRouter>
     </QueryClientProvider>
+
 
 );
 reportWebVitals();

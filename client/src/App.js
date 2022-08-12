@@ -1,4 +1,7 @@
 import { Routes, Route, Navigate } from "react-router-dom";
+import 'primereact/resources/primereact.min.css';
+import 'primeicons/primeicons.css'
+import "primereact/resources/themes/lara-light-indigo/theme.css";
 import Navi from './components/Navi';
 import Signin from './pages/Auth/Signin';
 import Signup from './pages/Auth/Signup';

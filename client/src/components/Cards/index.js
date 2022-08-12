@@ -72,7 +72,7 @@ function Cards({ item }) {
         </MDBModal>
 
         <CardActions style={{ justifyContent: "space-between" }}>
-          <Alert variant="filled">{currencyFormat(item.price)}₺</Alert>
+          <Alert variant="filled">{currencyFormat(item.price)} ₺</Alert>
 
           <Button
             size="large"

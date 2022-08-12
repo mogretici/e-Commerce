@@ -44,7 +44,7 @@ function Description({ item, photos }) {
             </MDBCarouselInner>
           </MDBCarousel>
           <CardActions style={{ justifyContent: "space-between", flexDirection: "column", }}>
-          <h4>{currencyFormat(item.price)}₺</h4>
+          <h4>{currencyFormat(item.price)} ₺</h4>
           
 
           <Button
