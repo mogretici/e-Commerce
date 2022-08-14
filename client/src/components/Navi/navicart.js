@@ -1,7 +1,6 @@
 import React from "react";
 import { Pane, Popover } from "evergreen-ui";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
-import Fab from "@mui/material/Fab";
 import ListItem from "@mui/material/ListItem";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import ListItemText from "@mui/material/ListItemText";
@@ -16,9 +15,13 @@ import Grid from "@mui/material/Grid";
 import CloseIcon from "@rsuite/icons/Close";
 import CompleteOrder from "./completeOrder";
 import { Drawer } from 'rsuite';
+import { toaster } from "evergreen-ui";
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import RemoveShoppingCartIcon from "@mui/icons-material/RemoveShoppingCart";
+
 
 function NaviCart({ cart }) {
-  const { removeFromCart } = useCart();
+  const { removeFromCart, setCart } = useCart();
   const [open, setOpen] = React.useState(false);
   const [placement, setPlacement] = React.useState();
 
@@ -27,22 +30,59 @@ function NaviCart({ cart }) {
     setPlacement(key);
   };
 
+
+  const firstFiveWords = [];
+  const cartView = [];
+
+ cart.map((item) => {
+  firstFiveWords.push((item.title).split(" ",5)); 
+  }
+  );
+  // console.log(firstFiveWords);
+
+  firstFiveWords.map((item) => {
+    const value = item[0]+" "+item[1]+" "+item[2]+" "+item[3]+" "+item[4];
+    cartView.push(value);
+  })
+// console.log(cartView);
+// console.log(cart)
+
+//  const item1 = array[0][0] + " " + array[0][1] + " " + array[0][2] + " " + array[0][3] + " " + array[0][4];
+//   console.log(item1);
+
   return (
     <div>
       <Popover
-       
+        
         content={({ close }) => (
           <Pane
-            width={700}
-            height="auto"
-            style={{ overflowY: 'auto', maxHeight: '500px' }}
-            paddingX={40}
+            
+            style={{ maxHeight: '500px'}}
+            paddingX={20}
             paddingY={20}
             display="flex"
             alignItems="center"
             justifyContent="center"
             flexDirection="column"
           >
+            <Grid container spacing={1} justifyContent="space-between" >
+
+              <h5><u> ORDER LIST </u></h5>
+              <Button
+                size="small"
+                variant="outlined"
+                startIcon={<RemoveShoppingCartIcon />}
+                color="error"
+                onClick={() => {
+                  setCart([]);
+                  toaster.warning("Your order list is empty now.");
+                }}
+              >
+                CLEAR CART
+              </Button>
+            </Grid>
+            <Grid item style={{padding:20 , overflowY:'auto'}}>
+            
             {cart.map((item, key) => (
               <ListItem
                 key={key}
@@ -65,14 +105,15 @@ function NaviCart({ cart }) {
                 </ListItemAvatar>
 
                 <ListItemText
-                  primary={`${item.quantity} x ${item.title}`}
+                  primary={`${item.quantity} x ${(item.title).split(' ').slice(0, 5).join(' ')}`} // first 5 words of title
                   secondary={`Item Price: ${item.quantity} x ${currencyFormat(
                     item.price
                   )} ₺  = ${currencyFormat(item.price * item.quantity)} ₺  `}
                 />
               </ListItem>
             ))}
-            <Grid container spacing={1} justifyContent="space-between">
+            </Grid>
+            <Grid container spacing={1} justifyContent="space-between" paddingTop={5}>
               <Grid item>
                 <Button
                   size="small"
@@ -81,7 +122,7 @@ function NaviCart({ cart }) {
                   color="success"
                   disabled
                 >
-                  Total Price
+                  Total Price: 
                   {currencyFormat(
                     cart.reduce(
                       (acc, item) => acc + item.price * item.quantity,
@@ -109,10 +150,14 @@ function NaviCart({ cart }) {
           </Pane>
         )}
       >
-        <Fab variant="extended" size="medium" onClick={() => {}}>
-          <ShoppingBasketIcon sx={{ mr: 1 }} />
-          CART {cart.length}
-        </Fab>
+        <Button
+                  style={{color:'white'}}
+                  size="medium"
+                  variant="inherit"
+                  startIcon={<ShoppingBasketIcon />}
+                >
+                  CART {cart.length}
+                </Button>
       </Popover>
       <Drawer placement={placement} open={open} onClose={() => setOpen(false)} size='full'>
         <Drawer.Header>
@@ -121,14 +166,14 @@ function NaviCart({ cart }) {
             <Button
                   size="medium"
                   variant="contained"
-                  startIcon={<ShoppingCartCheckoutIcon />}
-                  color="success"
+                  startIcon={<ArrowBackIosIcon />}
+                  color="inherit"
                   onClick={() => {
                     setOpen(false)}
                   }
                 >
-                  CONFIRM ORDER
-                </Button>
+                  BACK TO PRODUCTS
+            </Button>
              
           </Drawer.Actions>
         </Drawer.Header>

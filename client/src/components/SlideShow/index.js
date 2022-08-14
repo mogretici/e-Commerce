@@ -28,7 +28,7 @@ function SlideShow({ product }) {
         placement="auto"
         overlay={
           <Popover id="popover-basic">
-            <Popover.Header as="h3">{product.title}</Popover.Header>
+            <Popover.Header as="h5">{product.title}</Popover.Header>
             <Popover.Body>
               <Description item={product} photos={product.photos} />
             </Popover.Body>
@@ -65,6 +65,7 @@ function SlideShow({ product }) {
         }}
       >
         <AliceCarousel
+          
           mouseTracking
           animationType="fadeout"
           items={items}

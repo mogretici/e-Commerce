@@ -6,6 +6,8 @@ import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions, Alert } from "@mui/material";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 // import { LinkContainer } from "react-router-bootstrap";
+import { toaster } from "evergreen-ui";
+
 import {
   MDBBtn,
   MDBModal,
@@ -18,10 +20,13 @@ import {
 import Description from "./description";
 import currencyFormat from "../currencyFormat";
 import { useCart } from "../../context/CartContext";
+import { useAuth } from "../../context/AuthContext";
 
 function Cards({ item }) {
   const [optModal, setOptModal] = useState(false);
   const {addToCart} = useCart();
+  const {loggedIn} = useAuth();
+
   const toggleShow = () => setOptModal(!optModal);
   return (
     <div>
@@ -80,7 +85,7 @@ function Cards({ item }) {
             startIcon={<AddShoppingCartIcon />}
             color="success"
             onClick={()=>{
-              addToCart(item);
+             loggedIn ? addToCart(item) : toaster.warning("Please login or register for add to cart");
             }}
           >
             ADD TO CART

@@ -21,9 +21,15 @@ export const fetchRegister = async (input) => {
         return data;
     }
 
+    export const fetchProducts = async () => {
+        const { data } = await axios.get(`${process.env.REACT_APP_BASE_ENDPOINT}/product`);
+        return data;
+    }
+
 export const fetchMe = async () => {
     
     const { data } = await axios.get(`${process.env.REACT_APP_BASE_ENDPOINT}/auth/me`);
+    
     return data;
     
 }
@@ -45,5 +51,14 @@ export const fetchLogin = async (input) => {
 
 export const postOrder = async (input) => {
     const { data } = await axios.post(`${process.env.REACT_APP_BASE_ENDPOINT}/order`, input);
+    return data;
+}
+
+export const fetchOrders = async () => {
+    const { data } = await axios.get(`${process.env.REACT_APP_BASE_ENDPOINT}/order`);
+    return data;
+}
+export const removeOrder = async (id) => {
+    const { data } = await axios.delete(`${process.env.REACT_APP_BASE_ENDPOINT}/order/${id}`);
     return data;
 }

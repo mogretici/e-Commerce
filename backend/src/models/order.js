@@ -1,3 +1,4 @@
+import e from 'cors';
 import mongoose from 'mongoose';
 
 const Schema = mongoose.Schema;
@@ -7,7 +8,7 @@ const OrderSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'user',
   },
-  adress: {
+  address: {
     type: String,
     required: true,
   },
@@ -21,6 +22,18 @@ const OrderSchema = new Schema({
     type: Date,
     default: Date.now,
   },
+  quantity: {
+    type: String,
+    default: 1,
+  },
+  name: {
+    type: String,
+    required: true,
+  },
+  email: {
+    type: String,
+    required: true,
+  }
 });
 
 const Order = mongoose.model('order', OrderSchema);

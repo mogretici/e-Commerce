@@ -13,10 +13,16 @@ import Typography from "@mui/material/Typography";
 import {CardActions} from "@mui/material";
 import currencyFormat from "../currencyFormat";
 import { useCart } from "../../context/CartContext";
+import { toaster } from "evergreen-ui";
+import { useAuth } from "../../context/AuthContext";
+
 
 function Description({ item, photos }) {
   const handleDragStart = (e) => e.preventDefault();
   const {addToCart} = useCart();
+  const {loggedIn} = useAuth();
+  const [buttonText, setButtonText] = React.useState("ADD TO CART");
+
   return (
     <div>
     <div style={{ display: "flex", justifyContent: "normal" }}>
@@ -75,10 +81,12 @@ function Description({ item, photos }) {
             startIcon={<AddShoppingCartIcon />}
             color="success"
             onClick={()=>{
-              addToCart(item)
+              // toaster.warning("Please login or register for add to cart");
+             loggedIn ? addToCart(item) : setButtonText("Please login or register for add to cart"); 
+
             }}
           >
-            ADD TO CART
+            {buttonText}
           </Button>
         </CardActions>
       </Card>

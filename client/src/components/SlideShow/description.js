@@ -12,7 +12,8 @@ import {CardActions} from "@mui/material";
 import currencyFormat from "../currencyFormat";
 import { useCart } from "../../context/CartContext";
 import { useAuth } from "../../context/AuthContext";
-import { Navigate } from "react-router-dom";
+import { toaster } from "evergreen-ui";
+
 
 
 
@@ -53,11 +54,8 @@ function Description({ item, photos }) {
             startIcon={<AddShoppingCartIcon />}
             color="success"
             onClick={()=>{
-              loggedIn 
-              ? 
-              addToCart(item)
-              :
-              <Navigate to="/" /> 
+              loggedIn ? addToCart(item) : toaster.warning("Please login or register for add to cart");
+
             }}
           >
             ADD TO CART

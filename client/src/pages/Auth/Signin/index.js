@@ -13,7 +13,10 @@ function Signin() {
   });
 
   const emailValue = encryptStorage.getItem('email');
-  const passwordValue = encryptStorage.getItem('password').toString();
+  const pass=encryptStorage.getItem('password');
+  let passwordValue; 
+  typeof pass==='number' ?  passwordValue=pass.toString():  passwordValue=pass;
+  
   const onFinish = async (values) => {
     try {
       const loginResponse = await fetchLogin({email: values.email, password: values.password});

@@ -17,8 +17,11 @@ const Create = async (req, res, next) => {
   try {
     const order = new Order({
       user: user_id,
-      adress: input.address,
+      address: input.address,
       items: input.items,
+      quantity: input.quantity,
+      name: input.name,
+      email: input.email,
     });
 
     const savedData = await order.save();
@@ -51,8 +54,41 @@ const GetMyOrders = async (req, res, next) => {
   }
 };
 
+const Delete = async (req, res, next) => {
+  const { order_id } = req.params;
+  
+  try {
+    const deleted = await Order.findByIdAndDelete(order_id);
+
+    if (!deleted) {
+      return next(Boom.badRequest("Missing paramter (:order_id)"));
+    }
+
+    res.json(deleted);
+  } catch (e) {
+    next(e);
+  }
+}
+
+// const Delete = async (req, res, next) => {
+// 	const { product_id } = req.params;
+
+// 	try {
+// 		const deleted = await Product.findByIdAndDelete(product_id);
+
+// 		if (!deleted) {
+// 			throw Boom.badRequest("Product not found.");
+// 		}
+
+// 		res.json(deleted);
+// 	} catch (e) {
+// 		next(e);
+// 	}
+// };
+
 export default {
   Create,
   List,
   GetMyOrders,
+  Delete,
 };

@@ -10,7 +10,7 @@ function Signup() {
 
   const onFinish = async (values) => {
     try {
-      const registerResponse = await fetchRegister({email: values.email, password: values.password})
+      const registerResponse = await fetchRegister({name: values.name, email: values.email, password: values.password})
       console.log("Success:", values);
       setShowError(false);
       console.log(registerResponse)
@@ -53,6 +53,18 @@ function Signup() {
         autoComplete="off"
       >
         <h2>REGISTER</h2> <br />
+        <Form.Item
+          label="Name"
+          name="name"
+          rules={[
+            {
+              required: true,
+              message: "Please input your name!",
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
         <Form.Item
           label="Email"
           name="email"

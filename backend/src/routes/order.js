@@ -7,4 +7,6 @@ router.post('/', Order.Create);
 router.get('/', Order.List);
 router.get('/my-orders', Order.GetMyOrders);
 
+router.delete('/:order_id', Order.Delete);
+
 export default router;
