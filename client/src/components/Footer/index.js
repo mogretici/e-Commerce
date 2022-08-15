@@ -58,7 +58,9 @@ export default function App() {
         <section className="">
           <MDBRow>
             <MDBCol lg="3" md="6" className="mb-4 mb-md-0">
-              <h5 className="text-uppercase" style={{color:"white"}}>eCommerce</h5>
+              <h5 className="text-uppercase" style={{ color: "white" }}>
+                eCommerce
+              </h5>
 
               <ul className="list-unstyled mb-0">
                 <li>
@@ -68,77 +70,83 @@ export default function App() {
                 </li>
                 <li>
                   <a href="#!" className="text-white">
-                  Career
+                    Career
                   </a>
                 </li>
                 <li>
                   <a href="#!" className="text-white">
-                  Our Stores
+                    Our Stores
                   </a>
                 </li>
                 <li>
                   <a href="#!" className="text-white">
-                  Communication
+                    Communication
                   </a>
                 </li>
               </ul>
             </MDBCol>
 
             <MDBCol lg="3" md="6" className="mb-4 mb-md-0">
-              <h5 className="text-uppercase" style={{color:"white"}}>Customer Service</h5>
+              <h5 className="text-uppercase" style={{ color: "white" }}>
+                Customer Service
+              </h5>
 
               <ul className="list-unstyled mb-0">
                 <li>
                   <a href="#!" className="text-white">
-                  Cancellation and Refund Policy
+                    Cancellation and Refund Policy
                   </a>
                 </li>
                 <li>
                   <a href="#!" className="text-white">
-                  Warranty Conditions
+                    Warranty Conditions
                   </a>
                 </li>
                 <li>
                   <a href="#!" className="text-white">
-                  Frequently Asked Questions
+                    Frequently Asked Questions
                   </a>
                 </li>
                 <li>
                   <a href="#!" className="text-white">
-                  KVKK Illumination Text
+                    KVKK Illumination Text
                   </a>
                 </li>
               </ul>
             </MDBCol>
 
             <MDBCol lg="3" md="6" className="mb-4 mb-md-0">
-              <h5 className="text-uppercase" style={{color:"white"}}>Trading Guide</h5>
+              <h5 className="text-uppercase" style={{ color: "white" }}>
+                Trading Guide
+              </h5>
 
               <ul className="list-unstyled mb-0">
                 <li>
                   <a href="#!" className="text-white">
-                  How Can I Order?
+                    How Can I Order?
                   </a>
                 </li>
                 <li>
                   <a href="#!" className="text-white">
-                  Order Tracking
+                    Order Tracking
                   </a>
                 </li>
                 <li>
                   <a href="#!" className="text-white">
-                  Payment Options
+                    Payment Options
                   </a>
                 </li>
                 <li>
                   <a href="#!" className="text-white">
-                  Payment and Security
+                    Payment and Security
                   </a>
                 </li>
               </ul>
             </MDBCol>
             <MDBCol lg="3" md="6" className="mb-4 mb-md-0">
-              <h5 className="text-uppercase" style={{color:"white"}}>Follow Us</h5>
+              <h5 className="text-uppercase" style={{ color: "white" }}>
+                Follow Us
+              </h5>
               <ul className="list-unstyled mb-0">
                 <li>
                   <a href="#!" className="text-white">

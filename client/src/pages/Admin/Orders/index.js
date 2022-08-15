@@ -6,7 +6,6 @@ import DoneAllIcon from "@mui/icons-material/DoneAll";
 import RuleIcon from "@mui/icons-material/Rule";
 import { fetchOrders, removeOrder } from "../../../Api";
 import { Tooltip, Whisper } from "rsuite";
-import { overflow } from "ui-box";
 
 function Orders() {
   const [orders, setOrders] = React.useState([]);
@@ -63,14 +62,30 @@ function Orders() {
       </div>
     );
   };
- 
+
   return (
     <div>
       <div className="card">
-        <DataTable value={orders} stripedRows responsiveLayout="scroll" scrollable scrollHeight="600px" scrollDirection="horizontal"   >
+        <DataTable
+          value={orders}
+          stripedRows
+          responsiveLayout="scroll"
+          scrollable
+          scrollHeight="600px"
+          scrollDirection="horizontal"
+        >
           <Column field="name" header="NAME"></Column>
           <Column field="email" header="E-MAIL"></Column>
-          <Column field="address" header="ADDRESS" style={{maxWidth:200, maxHeight:'50', overflowX:'auto', overflowY:'auto' }}></Column>
+          <Column
+            field="address"
+            header="ADDRESS"
+            style={{
+              maxWidth: 200,
+              maxHeight: "50",
+              overflowX: "auto",
+              overflowY: "auto",
+            }}
+          ></Column>
           <Column header="ORDERS" body={(item) => items(item)}></Column>
           <Column
             headerStyle={{ width: "4rem", textAlign: "center" }}

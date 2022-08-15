@@ -1,76 +1,100 @@
 import axios from "axios";
-axios.interceptors.request.use(function (config) {
-    const {origin} = new URL(config.url);
+axios.interceptors.request.use(
+  function (config) {
+    const { origin } = new URL(config.url);
     const allowedOrigin = [process.env.REACT_APP_BASE_ENDPOINT];
     const token = localStorage.getItem("access-token");
 
     if (allowedOrigin.includes(origin) && token) {
-        config.headers.authorization = token;
+      config.headers.authorization = token;
     }
 
     return config;
-  }, function (error) {
+  },
+  function (error) {
     return Promise.reject(error);
-  });
-
-  
+  }
+);
 
 export const fetchRegister = async (input) => {
-  
-        const { data } = await axios.post(`${process.env.REACT_APP_BASE_ENDPOINT}/auth/register`, input);
-        return data;
-    }
+  const { data } = await axios.post(
+    `${process.env.REACT_APP_BASE_ENDPOINT}/auth/register`,
+    input
+  );
+  return data;
+};
 
-    export const fetchProducts = async () => {
-        const { data } = await axios.get(`${process.env.REACT_APP_BASE_ENDPOINT}/product`);
-        return data;
-    }
+export const fetchProducts = async () => {
+  const { data } = await axios.get(
+    `${process.env.REACT_APP_BASE_ENDPOINT}/product`
+  );
+  return data;
+};
 
 export const fetchMe = async () => {
-    
-    const { data } = await axios.get(`${process.env.REACT_APP_BASE_ENDPOINT}/auth/me`);
-    
-    return data;
-    
-}
+  const { data } = await axios.get(
+    `${process.env.REACT_APP_BASE_ENDPOINT}/auth/me`
+  );
+
+  return data;
+};
 
 export const fetchLogout = async () => {
-    const { data } = await axios.post(`${process.env.REACT_APP_BASE_ENDPOINT}/auth/logout`,
+  const { data } = await axios.post(
+    `${process.env.REACT_APP_BASE_ENDPOINT}/auth/logout`,
     {
-        refresh_token: localStorage.getItem("refresh-token"),
-     }
-     );
-    
-    return data;
-}
+      refresh_token: localStorage.getItem("refresh-token"),
+    }
+  );
+
+  return data;
+};
 
 export const fetchLogin = async (input) => {
-    const { data } = await axios.post(`${process.env.REACT_APP_BASE_ENDPOINT}/auth/login`, input);
-    return data;
-}
+  const { data } = await axios.post(
+    `${process.env.REACT_APP_BASE_ENDPOINT}/auth/login`,
+    input
+  );
+  return data;
+};
 
 export const postOrder = async (input) => {
-    const { data } = await axios.post(`${process.env.REACT_APP_BASE_ENDPOINT}/order`, input);
-    return data;
-}
+  const { data } = await axios.post(
+    `${process.env.REACT_APP_BASE_ENDPOINT}/order`,
+    input
+  );
+  return data;
+};
 
 export const fetchOrders = async () => {
-    const { data } = await axios.get(`${process.env.REACT_APP_BASE_ENDPOINT}/order`);
-    return data;
-}
+  const { data } = await axios.get(
+    `${process.env.REACT_APP_BASE_ENDPOINT}/order`
+  );
+  return data;
+};
 export const removeOrder = async (id) => {
-    const { data } = await axios.delete(`${process.env.REACT_APP_BASE_ENDPOINT}/order/${id}`);
-    return data;
-}
+  const { data } = await axios.delete(
+    `${process.env.REACT_APP_BASE_ENDPOINT}/order/${id}`
+  );
+  return data;
+};
 export const removeProduct = async (id) => {
-    const { data } = await axios.delete(`${process.env.REACT_APP_BASE_ENDPOINT}/product/${id}`);
-    return data;
-}
+  const { data } = await axios.delete(
+    `${process.env.REACT_APP_BASE_ENDPOINT}/product/${id}`
+  );
+  return data;
+};
 export const addProduct = async (input) => {
-    const { data } = await axios.post(`${process.env.REACT_APP_BASE_ENDPOINT}/product`, input);
-    return data;
-} 
+  const { data } = await axios.post(
+    `${process.env.REACT_APP_BASE_ENDPOINT}/product`,
+    input
+  );
+  return data;
+};
 export const updateProduct = async (input, product_id) => {
-    const { data } = await axios.put(`${process.env.REACT_APP_BASE_ENDPOINT}/product/${product_id}`, input);
-    return data;
-}
+  const { data } = await axios.put(
+    `${process.env.REACT_APP_BASE_ENDPOINT}/product/${product_id}`,
+    input
+  );
+  return data;
+};

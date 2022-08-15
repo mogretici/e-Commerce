@@ -12,7 +12,7 @@ function Profile() {
         <FlexboxGrid.Item colspan={12}>
           <Panel header={<h3>Profile Details</h3>} bordered>
             <div>
-            <h5>
+              <h5>
                 User Name:<p>{user.name}</p>
               </h5>
               <h5>

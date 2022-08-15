@@ -2,11 +2,11 @@ import React from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import Box from '@mui/material/Box';
-import Tab from '@mui/material/Tab';
-import TabContext from '@mui/lab/TabContext';
-import TabList from '@mui/lab/TabList';
-import TabPanel from '@mui/lab/TabPanel';
+import Box from "@mui/material/Box";
+import Tab from "@mui/material/Tab";
+import TabContext from "@mui/lab/TabContext";
+import TabList from "@mui/lab/TabList";
+import TabPanel from "@mui/lab/TabPanel";
 import { LinkContainer } from "react-router-bootstrap";
 import { useAuth } from "../../context/AuthContext";
 import AddIcon from "@mui/icons-material/Add";
@@ -18,7 +18,6 @@ import NaviCart from "./navicart";
 import { Button } from "@mui/material";
 import SettingsSuggestIcon from "@mui/icons-material/SettingsSuggest";
 import { Drawer } from "rsuite";
-import "./Navi.css";
 import Orders from "../../pages/Admin/Orders";
 import Products from "../../pages/Admin/Products";
 
@@ -29,7 +28,7 @@ function Navi() {
   const handleOpen = () => {
     setOpen(true);
   };
-  const [value, setValue] = React.useState('1');
+  const [value, setValue] = React.useState("1");
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -87,22 +86,19 @@ function Navi() {
                     justifyContent: "space-evenly",
                   }}
                 >
-                  {/*  */}
-                  {cart.length > 0 && <NaviCart cart={cart} />}   
-                  {/*  */}
-                  {user && user.role === "admin" && loggedIn && ( 
-                    
+                  {cart.length > 0 && <NaviCart cart={cart} />}
+                  {user && user.role === "admin" && loggedIn && (
                     <Button
-                    size="medium"
-                    variant="inherit"
-                    startIcon={<SettingsSuggestIcon />}
-                    onClick={() => {
-                      handleOpen();
-                      console.log(cart)
-                    }}
-                  >
-                    ADMIN PANEL
-                  </Button>
+                      size="medium"
+                      variant="inherit"
+                      startIcon={<SettingsSuggestIcon />}
+                      onClick={() => {
+                        handleOpen();
+                        console.log(cart);
+                      }}
+                    >
+                      ADMIN PANEL
+                    </Button>
                   )}
                   <LinkContainer
                     to="/profile"
@@ -166,40 +162,25 @@ function Navi() {
       >
         <Drawer.Header>
           <Drawer.Title>
-            
-          <TabContext value={value}>
-  <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-    <TabList onChange={handleChange} aria-label="lab API tabs example">
-      <Tab label="ORDERS" value="1" />
-      <Tab label="PRODUCTS" value="2" />
-    </TabList>
-  </Box>
-  <TabPanel value="1"><Orders /></TabPanel>
-  <TabPanel value="2"><Products /></TabPanel>
-</TabContext>
-
+            <TabContext value={value}>
+              <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+                <TabList
+                  onChange={handleChange}
+                  aria-label="lab API tabs example"
+                >
+                  <Tab label="ORDERS" value="1" />
+                  <Tab label="PRODUCTS" value="2" />
+                </TabList>
+              </Box>
+              <TabPanel value="1">
+                <Orders />
+              </TabPanel>
+              <TabPanel value="2">
+                <Products />
+              </TabPanel>
+            </TabContext>
           </Drawer.Title>
-          {/* <Drawer.Actions>
-            <Button
-              onClick={() => setOpen(false)}
-              variant="contained"
-              style={{ color: "white", backgroundColor: "red" }}
-            >
-              BACK
-            </Button>
-            <Button
-              onClick={() => setOpen(false)}
-              variant="contained"
-              appearance="primary"
-              style={{ color: "white", backgroundColor: "green" }}
-            >
-              SAVE
-            </Button>
-          </Drawer.Actions> */}
         </Drawer.Header>
-        {/* <Drawer.Body> */}
-        {/* drawer body */}  
-        {/* </Drawer.Body> */}
       </Drawer>
     </div>
   );

@@ -3,9 +3,7 @@ import ListItem from "@mui/material/ListItem";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import ListItemText from "@mui/material/ListItemText";
 import Avatar from "@mui/material/Avatar";
-import { Button as Btn } from 'primereact/button';
 import currencyFormat from "../currencyFormat";
-import CloseIcon from "@rsuite/icons/Close";
 import { useCart } from "../../context/CartContext";
 import { FlexboxGrid, Col, IconButton } from "rsuite";
 import ShoppingCartCheckoutIcon from "@mui/icons-material/ShoppingCartCheckout";
@@ -16,11 +14,8 @@ import { postOrder } from "../../Api";
 import { toaster } from "evergreen-ui";
 import { InputTextarea } from "primereact/inputtextarea";
 import { useAuth } from "../../context/AuthContext";
-import { Tooltip } from 'primereact/tooltip';
 import PlusIcon from '@rsuite/icons/Plus';
 import MinusIcon from '@rsuite/icons/Minus';
-
-//sepeti boşalt order penceresini kapat backende adet bilgisi gönder
 
 function CompleteOrder({ cart }) {
   const { removeFromCart, setCart, addToCart} = useCart();
@@ -67,12 +62,6 @@ function CompleteOrder({ cart }) {
               {cart.map((item, key) => (
                 <div key={key} style={{justifyContent:'start', display:'flex', flexDirection:'row'}}>
                 <ListItem
-                  
-                  // secondaryAction={
-                  //   <div>
-                    
-                  //   </div>
-                  // }
                 >
                   <ListItemAvatar>
                     <Avatar>
@@ -119,7 +108,6 @@ function CompleteOrder({ cart }) {
           <FlexboxGrid justify="space-around">
             <FlexboxGrid.Item colspan={24} md={9}>
               <h4 style={{ paddingBottom: 40 }}>
-                {" "}
                 PAYMENT & ADDRESS INFORMATION{" "}
               </h4>
             </FlexboxGrid.Item>

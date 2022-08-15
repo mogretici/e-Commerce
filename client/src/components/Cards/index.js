@@ -5,7 +5,6 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions, Alert } from "@mui/material";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
-// import { LinkContainer } from "react-router-bootstrap";
 import { toaster } from "evergreen-ui";
 
 import {
@@ -24,8 +23,8 @@ import { useAuth } from "../../context/AuthContext";
 
 function Cards({ item }) {
   const [optModal, setOptModal] = useState(false);
-  const {addToCart} = useCart();
-  const {loggedIn} = useAuth();
+  const { addToCart } = useCart();
+  const { loggedIn } = useAuth();
 
   const toggleShow = () => setOptModal(!optModal);
   return (
@@ -70,8 +69,8 @@ function Cards({ item }) {
                 ></MDBBtn>
               </MDBModalHeader>
               <MDBModalBody>
-              <Description item={item} photos={item.photos} />
-                </MDBModalBody>
+                <Description item={item} photos={item.photos} />
+              </MDBModalBody>
             </MDBModalContent>
           </MDBModalDialog>
         </MDBModal>
@@ -84,8 +83,10 @@ function Cards({ item }) {
             variant="outlined"
             startIcon={<AddShoppingCartIcon />}
             color="success"
-            onClick={()=>{
-             loggedIn ? addToCart(item) : toaster.warning("Please login or register for add to cart");
+            onClick={() => {
+              loggedIn
+                ? addToCart(item)
+                : toaster.warning("Please login or register for add to cart");
             }}
           >
             ADD TO CART

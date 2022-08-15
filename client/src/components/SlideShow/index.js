@@ -41,7 +41,6 @@ function SlideShow({ product }) {
             onDragStart={handleDragStart}
             image={product.photos[0]}
             alt={product.title}
-            
           />
           <CardContent>
             <Typography gutterBottom variant="h10" component="div">
@@ -62,11 +61,9 @@ function SlideShow({ product }) {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          
         }}
       >
         <AliceCarousel
-          
           mouseTracking
           animationType="fadeout"
           items={items}

@@ -7,7 +7,6 @@ import Divider from "@mui/material/Divider";
 import useWindowSize from "../../useWindowSize.js";
 import ProductList from "./productList";
 
-
 function Products() {
   const size = useWindowSize();
 

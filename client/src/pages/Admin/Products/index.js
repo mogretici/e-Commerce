@@ -3,12 +3,11 @@ import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { Button } from "@mui/material";
 import RuleIcon from "@mui/icons-material/Rule";
-import { fetchProducts, addProduct, removeProduct } from "../../../Api";
+import { fetchProducts, removeProduct } from "../../../Api";
 import currencyFormat from "../../../components/currencyFormat";
 import AddProducts from "./addproducts";
-import { Modal,  } from "rsuite";
+import { Modal } from "rsuite";
 import EditProducts from "./editproducts";
-
 
 function Products() {
   const [products, setProducts] = React.useState([]);
@@ -21,7 +20,6 @@ function Products() {
   const handleCloseAdd = () => setOpenAdd(0);
   const refreshProducts = async () => setProducts(await fetchProducts());
 
-
   React.useEffect(() => {
     (async () => {
       setProducts(await fetchProducts());
@@ -29,10 +27,8 @@ function Products() {
   }, []);
 
   const items = (item) => {
-    
     return (
       <>
-      
         <div
           style={{
             display: "flex",
@@ -43,21 +39,26 @@ function Products() {
           <Button
             style={{ color: "#bfbf00" }}
             startIcon={<RuleIcon />}
-            onClick={()=>{
-              setSelectedItem(item)
-              handleOpenEdit()
+            onClick={() => {
+              setSelectedItem(item);
+              handleOpenEdit();
             }}
           >
-            EDIT PRODUCT 
+            EDIT PRODUCT
           </Button>
-          <Button style={{ color: "red" }} startIcon={<RuleIcon />} onClick={()=>{
-            removeProduct(item._id) 
-            setProducts(products.filter(product => product._id !== item._id))
-          }}>
+          <Button
+            style={{ color: "red" }}
+            startIcon={<RuleIcon />}
+            onClick={() => {
+              removeProduct(item._id);
+              setProducts(
+                products.filter((product) => product._id !== item._id)
+              );
+            }}
+          >
             DELETE PRODUCT
           </Button>
         </div>
-       
       </>
     );
   };
@@ -73,7 +74,11 @@ function Products() {
 
   return (
     <div>
-      <Modal size="lg" open={openAdd===1 ? true: false} onClose={handleCloseAdd}>
+      <Modal
+        size="lg"
+        open={openAdd === 1 ? true : false}
+        onClose={handleCloseAdd}
+      >
         <Modal.Header>
           <Modal.Title>ADD PRODUCT</Modal.Title>
         </Modal.Header>
@@ -81,14 +86,22 @@ function Products() {
           <AddProducts toggle={handleCloseAdd} refreshList={refreshProducts} />
         </Modal.Body>
       </Modal>
-      <Modal size="lg" open={openEdit===1 ? true : false} onClose={handleCloseEdit}>
-    <Modal.Header>
-      <Modal.Title>PRODUCT EDIT</Modal.Title>
-    </Modal.Header>
-    <Modal.Body>
-      <EditProducts item={selectedItem} toggle={handleCloseEdit} refreshList={refreshProducts} />
-    </Modal.Body>
-  </Modal>
+      <Modal
+        size="lg"
+        open={openEdit === 1 ? true : false}
+        onClose={handleCloseEdit}
+      >
+        <Modal.Header>
+          <Modal.Title>PRODUCT EDIT</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <EditProducts
+            item={selectedItem}
+            toggle={handleCloseEdit}
+            refreshList={refreshProducts}
+          />
+        </Modal.Body>
+      </Modal>
       <div style={{ display: "flex", justifyContent: "end" }}>
         <Button
           style={{ color: "green" }}
@@ -105,7 +118,6 @@ function Products() {
           responsiveLayout="scroll"
           scrollable
           scrollHeight="600px"
-
         >
           <Column body={(item) => title(item)} header="TITLE"></Column>
           <Column
