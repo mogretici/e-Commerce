@@ -87,8 +87,10 @@ function Navi() {
                     justifyContent: "space-evenly",
                   }}
                 >
-                  {cart.length > 0 && <NaviCart cart={cart} />}
-                  {user && user.role === "admin" && loggedIn && (
+                  {/*  */}
+                  {cart.length > 0 && <NaviCart cart={cart} />}   
+                  {/*  */}
+                  {user && user.role === "admin" && loggedIn && ( 
                     
                     <Button
                     size="medium"
@@ -96,6 +98,7 @@ function Navi() {
                     startIcon={<SettingsSuggestIcon />}
                     onClick={() => {
                       handleOpen();
+                      console.log(cart)
                     }}
                   >
                     ADMIN PANEL
@@ -176,7 +179,7 @@ function Navi() {
 </TabContext>
 
           </Drawer.Title>
-          <Drawer.Actions>
+          {/* <Drawer.Actions>
             <Button
               onClick={() => setOpen(false)}
               variant="contained"
@@ -192,7 +195,7 @@ function Navi() {
             >
               SAVE
             </Button>
-          </Drawer.Actions>
+          </Drawer.Actions> */}
         </Drawer.Header>
         {/* <Drawer.Body> */}
         {/* drawer body */}  

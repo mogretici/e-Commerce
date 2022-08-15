@@ -5,7 +5,7 @@ import ListItem from "@mui/material/ListItem";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import ListItemText from "@mui/material/ListItemText";
 import Avatar from "@mui/material/Avatar";
-import IconButton from "@mui/material/IconButton";
+// import IconButton from "@mui/material/IconButton";
 import { useCart } from "../../context/CartContext";
 import currencyFormat from "../currencyFormat";
 import { Button } from "@mui/material";
@@ -14,14 +14,15 @@ import ShoppingCartCheckoutIcon from "@mui/icons-material/ShoppingCartCheckout";
 import Grid from "@mui/material/Grid";
 import CloseIcon from "@rsuite/icons/Close";
 import CompleteOrder from "./completeOrder";
-import { Drawer } from 'rsuite';
+import { Drawer, IconButton } from 'rsuite';
 import { toaster } from "evergreen-ui";
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import RemoveShoppingCartIcon from "@mui/icons-material/RemoveShoppingCart";
-
+import PlusIcon from '@rsuite/icons/Plus';
+import MinusIcon from '@rsuite/icons/Minus';
 
 function NaviCart({ cart }) {
-  const { removeFromCart, setCart } = useCart();
+  const { removeFromCart, setCart, addToCart } = useCart();
   const [open, setOpen] = React.useState(false);
   const [placement, setPlacement] = React.useState();
 
@@ -84,19 +85,10 @@ function NaviCart({ cart }) {
             <Grid item style={{padding:20 , overflowY:'auto'}}>
             
             {cart.map((item, key) => (
+                <div key={key} style={{justifyContent:'start', display:'flex', flexDirection:'row'}}>
+              
               <ListItem
-                key={key}
-                secondaryAction={
-                  <IconButton
-                    edge="end"
-                    aria-label="delete"
-                    onClick={() => {
-                      removeFromCart(item._id, item.quantity);
-                    }}
-                  >
-                    <CloseIcon />
-                  </IconButton>
-                }
+              
               >
                 <ListItemAvatar>
                   <Avatar>
@@ -105,12 +97,19 @@ function NaviCart({ cart }) {
                 </ListItemAvatar>
 
                 <ListItemText
+                style={{minWidth:'300px'}}
                   primary={`${item.quantity} x ${(item.title).split(' ').slice(0, 5).join(' ')}`} // first 5 words of title
                   secondary={`Item Price: ${item.quantity} x ${currencyFormat(
                     item.price
                   )} ₺  = ${currencyFormat(item.price * item.quantity)} ₺  `}
                 />
               </ListItem>
+               <ListItem style={{justifyContent:'end'}}>
+               <IconButton className="tooltip-button" onClick={() => removeFromCart(item._id, item.quantity)}  icon={<MinusIcon />} />
+                       <IconButton className="tooltip-button" disabled icon={item.quantity} />
+                       <IconButton className="tooltip-button" onClick={() => addToCart(item)} icon={<PlusIcon />} />
+                       </ListItem>
+                        </div>
             ))}
             </Grid>
             <Grid container spacing={1} justifyContent="space-between" paddingTop={5}>

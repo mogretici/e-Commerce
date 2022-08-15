@@ -3,11 +3,11 @@ import ListItem from "@mui/material/ListItem";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import ListItemText from "@mui/material/ListItemText";
 import Avatar from "@mui/material/Avatar";
-import IconButton from "@mui/material/IconButton";
+import { Button as Btn } from 'primereact/button';
 import currencyFormat from "../currencyFormat";
 import CloseIcon from "@rsuite/icons/Close";
 import { useCart } from "../../context/CartContext";
-import { FlexboxGrid, Col } from "rsuite";
+import { FlexboxGrid, Col, IconButton } from "rsuite";
 import ShoppingCartCheckoutIcon from "@mui/icons-material/ShoppingCartCheckout";
 import RemoveShoppingCartIcon from "@mui/icons-material/RemoveShoppingCart";
 import { Button } from "@mui/material";
@@ -16,11 +16,14 @@ import { postOrder } from "../../Api";
 import { toaster } from "evergreen-ui";
 import { InputTextarea } from "primereact/inputtextarea";
 import { useAuth } from "../../context/AuthContext";
+import { Tooltip } from 'primereact/tooltip';
+import PlusIcon from '@rsuite/icons/Plus';
+import MinusIcon from '@rsuite/icons/Minus';
 
 //sepeti boşalt order penceresini kapat backende adet bilgisi gönder
 
 function CompleteOrder({ cart }) {
-  const { removeFromCart, setCart } = useCart();
+  const { removeFromCart, setCart, addToCart} = useCart();
   const { user } = useAuth();
 
   const handleSubmitForm = async () => {
@@ -39,6 +42,7 @@ function CompleteOrder({ cart }) {
     toaster.success(
       "Your order has been sent. We will contact you soon (maybe).Thank you."
     );
+    setCart([]);
   };
   const [address, setAdress] = React.useState(user.address ? user.address : "");
   const [name, setName] = React.useState(user.name ? user.name : "");
@@ -50,7 +54,7 @@ function CompleteOrder({ cart }) {
   return (
     <>
       <FlexboxGrid justify="space-around">
-        <FlexboxGrid.Item as={Col} colspan={24} md={9}>
+        <FlexboxGrid.Item as={Col} colspan={24} md={12}>
           <FlexboxGrid justify="space-around">
             <FlexboxGrid.Item colspan={24} md={9}>
               <h4> ORDER LIST </h4>
@@ -61,19 +65,14 @@ function CompleteOrder({ cart }) {
               style={{ overflowY: "auto", maxHeight: "500px" }}
             >
               {cart.map((item, key) => (
+                <div key={key} style={{justifyContent:'start', display:'flex', flexDirection:'row'}}>
                 <ListItem
-                  key={key}
-                  secondaryAction={
-                    <IconButton
-                      edge="end"
-                      aria-label="delete"
-                      onClick={() => {
-                        removeFromCart(item._id, item.quantity);
-                      }}
-                    >
-                      <CloseIcon />
-                    </IconButton>
-                  }
+                  
+                  // secondaryAction={
+                  //   <div>
+                    
+                  //   </div>
+                  // }
                 >
                   <ListItemAvatar>
                     <Avatar>
@@ -82,12 +81,19 @@ function CompleteOrder({ cart }) {
                   </ListItemAvatar>
 
                   <ListItemText
+                    style={{minWidth:'300px'}}
                     primary={`${item.quantity} x ${item.title}`}
                     secondary={`Item Price: ${item.quantity} x ${currencyFormat(
                       item.price
                     )} ₺  = ${currencyFormat(item.price * item.quantity)} ₺  `}
                   />
                 </ListItem>
+                <ListItem style={{justifyContent:'end'}}>
+                 <IconButton className="tooltip-button" onClick={() => removeFromCart(item._id, item.quantity)}  icon={<MinusIcon />} />
+                         <IconButton className="tooltip-button" disabled icon={item.quantity} />
+                         <IconButton className="tooltip-button" onClick={() => addToCart(item)} icon={<PlusIcon />} />
+                         </ListItem>
+                         </div>
               ))}
             </FlexboxGrid.Item>
             <FlexboxGrid.Item
@@ -109,7 +115,7 @@ function CompleteOrder({ cart }) {
           </FlexboxGrid>
         </FlexboxGrid.Item>
 
-        <FlexboxGrid.Item as={Col} colspan={24} md={6}>
+        <FlexboxGrid.Item as={Col} colspan={24} md={9}>
           <FlexboxGrid justify="space-around">
             <FlexboxGrid.Item colspan={24} md={9}>
               <h4 style={{ paddingBottom: 40 }}>

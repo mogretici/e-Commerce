@@ -62,6 +62,7 @@ function SlideShow({ product }) {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
+          
         }}
       >
         <AliceCarousel
